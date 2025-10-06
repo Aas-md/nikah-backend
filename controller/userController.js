@@ -1,5 +1,6 @@
 const User = require('../models/userModel.js')
 const jwt = require('jsonwebtoken');
+const ExpressError = require('../utils/expressError.js');
 
 module.exports.signup = async (req, res) => {
 
@@ -16,6 +17,25 @@ module.exports.signup = async (req, res) => {
         const token = jwt.sign({ id: registeredUser._id }, 'secretCode', { expiresIn: '7d' })
         res.send({ status: "success", msg: "Welcome to mariageHall", user: registeredUser, token })
     })
+
+}
+
+module.exports.completeProfile = async (req,res)=>{
+  
+   let {id} = req.params
+   if(!req.body){
+    throw new ExpressError(400,'No user data provided')
+   }
+   delete req.body.username;
+   delete req.body.password;
+   
+   let currUser = await User.findByIdAndUpdate(id,{...req.body})
+
+   if(!currUser){
+    throw new ExpressError(404,'User not found!')
+   }
+
+    res.json({ msg: 'User updated successfully!', currUser })
 
 }
 

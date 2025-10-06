@@ -11,7 +11,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'wanderlust_DEV',
+    folder: 'Nikah',
     // format: async (req, file) => 'png', // supports promises as well
     allowedFormets : ["png","jpg","jpeg"]
    

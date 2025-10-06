@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const listings = require('./routes/listingRoute.js')
-const Listing = require('./models/listingModel.js')
+const profles = require('./routes/profileRoute.js')
+const Profile = require('./models/profileModel.js')
 const reviews = require('./routes/reviewRoute.js')
 const userRoute = require('./routes/userRoute.js')
 const passport = require('passport')
@@ -74,13 +74,13 @@ app.get('/', (req, res) => {
     res.send('Hello from Express and MongoDB!')
 })
 
-app.use('/listings',listings)
-app.use('/listings/:id/reviews',reviews)
+app.use('/profiles',profles)
+app.use('/profiles/:id/reviews',reviews)
 app.use('/',userRoute)
 
 
 app.listen(3000, () => {
-    console.log("Server is listing on port 3000")
+    console.log("Server is profile on port 3000")
 })
 
 // Catch-all 404 handler
