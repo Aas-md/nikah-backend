@@ -11,9 +11,10 @@ module.exports.index = async (req, res) => {
 }
 
 module.exports.addNewProfile = async (req, res, next) => {
-    
+
     let url = req.file?.path
     let filename = req.file?.filename
+    console.log("image->",req.file)
     const profile = req.body?.profile
     const newProfile = new Profile(profile)
     newProfile.owner = req.user._id
@@ -48,7 +49,7 @@ module.exports.showProfile = async (req, res) => {
 
 module.exports.updateProfile= async (req, res) => {
 
-
+  console.log("image->",req.file)
     const { id } = req.params
 
     if (!req.body.profile) {
@@ -61,6 +62,7 @@ module.exports.updateProfile= async (req, res) => {
         throw new ExpressError(404, 'Profile not found');
     }
 
+   
     if (typeof req.file !== 'undefined') {
         let url = req.file.path
         let filename = req.file.filename

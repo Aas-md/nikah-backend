@@ -14,7 +14,6 @@ module.exports.profileSchema = Joi.object({
                 profession: Joi.string().optional(),
                 height: Joi.string().optional(),
                 maritalStatus : Joi.string().valid("Never Married", "Divorced", "Widowed"),
-
                 image: Joi.string().allow("", null)
         }).required()
 
